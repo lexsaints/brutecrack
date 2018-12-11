@@ -36,3 +36,4 @@ macchanger -r wlan0mon //随机为wlan0mon网卡 生成一个MAC地址
 ifconfig wlan0mon up   //重新启用wlan0mon网卡
 
 
+
