@@ -1,10 +1,15 @@
 使用KALI机器暴力破解ssh登录密码 及防范方法
 
 服务器遭到暴力破解的防范措施：
+
   1.服务器日志文件：
+  
     Redhat版本：cat /var/log/secure
+    
     debian ：cat /var/log/syslog
+    
     例如:使用192.168.172.128机器 ssh连接 192.168.172.165
+    
     在165机器上，查看日志cat /var/log/secure
     
       Mar 20 17:10:07 localhost sshd[24014]: Failed password for root from 192.168.172.128 port 42610 ssh2
