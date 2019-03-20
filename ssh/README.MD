@@ -2,7 +2,7 @@
 
 服务器遭到暴力破解的防范措施：
   1.服务器日志文件：
-    Redhat版本：cat /var/log/secure 
+    Redhat版本：cat /var/log/secure
     debian ：cat /var/log/syslog
     例如:使用192.168.172.128机器 ssh连接 192.168.172.165
     在165机器上，查看日志cat /var/log/secure
