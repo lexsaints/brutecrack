@@ -1,0 +1,31 @@
+有时候,目标服务器的端口可能被修改过了,并不是默认的22端口,这时我们需要对目标服务器进行扫描,从而确认其开放了哪些端口及相应端口下的服务。
+工具:nmap
+安装:
+	KALI自带,并有各种渗透测试工具
+	RedHat系列:
+		yum install -y nmap
+扫描:
+	nmap -sV TARGET_IP
+	例如：测试扫描我自己的虚拟机:返回结果如下，包括开放的端口，及对应的服务
+	root@centos:/opt# nmap -sV 192.168.0.123
+	Starting Nmap 7.70 ( https://nmap.org ) at 2019-03-22 21:18 CST
+	Nmap scan report for code13.com (192.168.0.123)
+	Host is up (1.2s latency).
+	Not shown: 985 closed ports
+	PORT     STATE    SERVICE        VERSION
+	22/tcp   open     ssh            OpenSSH 5.3 (protocol 2.0)
+	80/tcp   open     http
+	135/tcp  filtered msrpc
+	139/tcp  filtered netbios-ssn
+	443/tcp  open     https?
+	445/tcp  filtered microsoft-ds
+	514/tcp  filtered shell
+	593/tcp  filtered http-rpc-epmap
+	901/tcp  filtered samba-swat
+	1999/tcp filtered tcp-id-port
+	3128/tcp filtered squid-http
+	4444/tcp filtered krb524
+	5800/tcp filtered vnc-http
+	6129/tcp filtered unknown
+	6667/tcp filtered irc
+扫描目标服务器时，目标服务器会建立大量的异常连接。
