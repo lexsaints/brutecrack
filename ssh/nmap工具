@@ -28,4 +28,4 @@
 	5800/tcp filtered vnc-http
 	6129/tcp filtered unknown
 	6667/tcp filtered irc
-扫描目标服务器时，目标服务器会建立大量的异常连接。
+hint:扫描目标服务器时，目标服务器会建立大量的异常连接。
