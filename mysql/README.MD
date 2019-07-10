@@ -1,1 +1,2 @@
 使用kali渗透mysql数据库
+Mysql是个关系型数据库管理系统，由瑞典Mysql AB开发，目前属于Oracle公司，在Metasploitable系统中，Mysql的身份认证存在漏洞，这个漏洞可以让攻击者不必提供正确的身份证书便可访问Mysql数据库。本教程将介绍使用Metasploit的Mysql扫描模块渗透攻击Mysql数据库服务。
